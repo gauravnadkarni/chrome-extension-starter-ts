@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "My First Chrome App",
+  "version": "1.0",
+  "description": "A Chrome extension built with TypeScript using Webpack.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.google.com/*"],
+      "css": ["content-style.css"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://*.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": [
+        "storage",
+        "activeTab",
+        "scripting",
+        "webNavigation"],
+  "host_permissions": ["https://*.google.com/*"],
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["https://*.google.com/*"]
+    }
+  ]
+}
